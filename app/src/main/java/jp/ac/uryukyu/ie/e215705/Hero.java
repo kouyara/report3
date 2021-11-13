@@ -28,27 +28,59 @@ public class Hero {
         System.out.printf("%sのHPは%d。攻撃力は%dです。\n", name, maximumHP, attack);
     }
 
+    /**
+     * nameフィールドを参照するアクセサ（getter method）。
+     * @return メンバ変数nameを参照
+     */
     public String getName(){
         return this.name;
     }
+    /**
+     * hitpointフィールドを参照するアクセサ（getter method）。
+     * @return メンバ変数hitpointを参照
+     */
     public int getHitPoint(){
         return this.hitPoint;
     }
+    /**
+     * attackフィールドを参照するアクセサ（getter method）。
+     * @return メンバ変数attackを参照
+     */
     public int getAttack(){
         return this.attack;
     }
+    /**
+     * deadフィールドを参照するアクセサ（getter method）。
+     * @return メンバ変数deadを参照
+     */
     public boolean getDead(){
         return this.dead;
     }
+    /**
+     * nameフィールドの名前を設定するアクセサ(setter method)。
+     * @param name 設定するフィールド名
+     */
     public void setName(String name){
         this.name = name;
     }
+    /**
+     * hitpointフィールドの名前を設定するアクセサ(setter method)。
+     * @param hitPoint 設定するフィールド名
+     */
     public void setHitPoint(int hitPoint){
         this.hitPoint = hitPoint;
     }
+    /**
+     * attackフィールドの名前を設定するアクセサ(setter method)。
+     * @param attack 設定するフィールド名
+     */
     public void setAttack(int attack){
         this.attack = attack;
     }
+    /**
+     * deadフィールドの名前を設定するアクセサ(setter method)。
+     * @param dead 設定するフィールド名
+     */
     public void setDead(Boolean dead){
         this.dead = dead;
     }
