@@ -8,11 +8,7 @@ package jp.ac.uryukyu.ie.e215705;
  *  boolean dead; //敵の生死状態。true=死亡。
  * Created by tnal on 2016/11/13.
  */
-public class Enemy {
-    private String name;
-    private int hitPoint;
-    private int attack;
-    private boolean dead;
+public class Enemy extends LivingThing{
 
     /**
      * コンストラクタ。名前、最大HP、攻撃力を指定する。
@@ -21,83 +17,7 @@ public class Enemy {
      * @param attack モンスターの攻撃力
      */
     public Enemy (String name, int maximumHP, int attack) {
-        this.name = name;
-        hitPoint = maximumHP;
-        this.attack = attack;
-        dead = false;
-        System.out.printf("%sのHPは%d。攻撃力は%dです。\n", name, maximumHP, attack);
-    }
-
-    /**
-     * nameフィールドを参照するアクセサ（getter method）。
-     * @return メンバ変数nameを参照
-     */
-    public String getName(){
-        return this.name;
-    }
-    /**
-     * hitpointフィールドを参照するアクセサ（getter method）。
-     * @return メンバ変数hitpointを参照
-     */
-    public int getHitPoint(){
-        return this.hitPoint;
-    }
-    /**
-     * attackフィールドを参照するアクセサ（getter method）。
-     * @return メンバ変数attackを参照
-     */
-    public int getAttack(){
-        return this.attack;
-    }
-    /**
-     * deadフィールドを参照するアクセサ（getter method）。
-     * @return メンバ変数deadを参照
-     */
-    public boolean getDead(){
-        return this.dead;
-    }
-    /**
-     * nameフィールドの名前を設定するアクセサ(setter method)。
-     * @param name 設定するフィールド名
-     */
-    public void setName(String name){
-        this.name = name;
-    }
-    /**
-     * hitpointフィールドの名前を設定するアクセサ(setter method)。
-     * @param hitPoint 設定するフィールド名
-     */
-    public void setHitPoint(int hitPoint){
-        this.hitPoint = hitPoint;
-    }
-    /**
-     * attackフィールドの名前を設定するアクセサ(setter method)。
-     * @param attack 設定するフィールド名
-     */
-    public void setAttack(int attack){
-        this.attack = attack;
-    }
-    /**
-     * deadフィールドの名前を設定するアクセサ(setter method)。
-     * @param dead 設定するフィールド名
-     */
-    public void setDead(Boolean dead){
-        this.dead = dead;
-    }
-
-    /**
-     * Heroへ攻撃するメソッド。
-     * attackに応じて乱数でダメージを算出し、hero.wounded()によりダメージ処理を実行。
-     * @param hero 攻撃対象
-     */
-    public void attack(Hero hero){
-        if (dead == true){
-    
-        }else{
-            int damage = (int)(Math.random() * attack);
-            System.out.printf("%sの攻撃！%sに%dのダメージを与えた！！\n", name, hero.getName(), damage);
-            hero.wounded(damage);
-        }
+        super(name, maximumHP, attack);
     }
 
     /**
@@ -105,11 +25,12 @@ public class Enemy {
      * 指定されたダメージを hitPoint から引き、死亡判定を行う。
      * @param damage 受けたダメージ
      */
+    @Override
     public void wounded(int damage){
-        hitPoint -= damage;
-        if( hitPoint < 0 ) {
-            dead = true;
-            System.out.printf("モンスター%sは倒れた。\n", name);
+        setHitPoint(getHitPoint() - damage);
+        if( getHitPoint() < 0 ) {
+            setDead(true);
+            System.out.printf("モンスター%sは倒れた。\n", getName());
         }
     }
 
